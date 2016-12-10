@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_weatherx" default="compile.module.weatherx">
+  <dirname property="module.weatherx.basedir" file="${ant.file.module_weatherx}"/>
+  
+  <property name="module.jdk.home.weatherx" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.weatherx" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.weatherx" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.weatherx" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="weatherx.output.dir" value="${module.weatherx.basedir}/out/production/weatherX"/>
+  <property name="weatherx.testoutput.dir" value="${module.weatherx.basedir}/out/test/weatherX"/>
+  
+  <path id="weatherx.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="weatherx.module.production.classpath">
+    <path refid="${module.jdk.classpath.weatherx}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.gwt-user_(2).classpath"/>
+  </path>
+  
+  <path id="weatherx.runtime.production.module.classpath">
+    <pathelement location="${weatherx.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.gwt-user_(2).classpath"/>
+  </path>
+  
+  <path id="weatherx.module.classpath">
+    <path refid="${module.jdk.classpath.weatherx}"/>
+    <pathelement location="${weatherx.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.gwt-user_(2).classpath"/>
+  </path>
+  
+  <path id="weatherx.runtime.module.classpath">
+    <pathelement location="${weatherx.testoutput.dir}"/>
+    <pathelement location="${weatherx.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.gwt-user_(2).classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.weatherx">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.weatherx">
+    <patternset refid="excluded.from.module.weatherx"/>
+  </patternset>
+  
+  <path id="weatherx.module.sourcepath">
+    <dirset dir="${module.weatherx.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.weatherx" depends="compile.module.weatherx.production,compile.module.weatherx.tests" description="Compile module weatherX"/>
+  
+  <target name="compile.module.weatherx.production" depends="register.custom.compilers" description="Compile module weatherX; production classes">
+    <mkdir dir="${weatherx.output.dir}"/>
+    <javac2 destdir="${weatherx.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.weatherx}/javac">
+      <compilerarg line="${compiler.args.weatherx}"/>
+      <bootclasspath refid="weatherx.module.bootclasspath"/>
+      <classpath refid="weatherx.module.production.classpath"/>
+      <src refid="weatherx.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.weatherx"/>
+    </javac2>
+    
+    <copy todir="${weatherx.output.dir}">
+      <fileset dir="${module.weatherx.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.weatherx.tests" depends="register.custom.compilers,compile.module.weatherx.production" description="compile module weatherX; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.weatherx" description="cleanup module">
+    <delete dir="${weatherx.output.dir}"/>
+    <delete dir="${weatherx.testoutput.dir}"/>
+  </target>
+  
+  <property name="gwt.compiler.output.weatherx" value="${module.weatherx.basedir}/GWTCompilerOutput_weatherx"/>
+  
+  <!-- Run GWT compiler for GWT module ${gwt.module.name} -->
+  <target name="run.gwt.compiler.weatherx" description="Run GWT compiler">
+    <java fork="true" jvm="${module.jdk.bin.weatherx}/java" classname="com.google.gwt.dev.Compiler" failonerror="true">
+      <jvmarg line="-Xmx1024m"/>
+      <classpath>
+        <pathelement location="${gwt.sdk.home.weatherx}/gwt-dev.jar"/>
+        <path refid="weatherx.module.sourcepath"/>
+        <path refid="weatherx.module.classpath"/>
+      </classpath>
+      <arg value="-logLevel"/>
+      <arg value="WARN"/>
+      <arg value="-war"/>
+      <arg value="${gwt.compiler.output.weatherx}"/>
+      <arg value="-style"/>
+      <arg value="DETAILED"/>
+      <arg value="${gwt.module.name}"/>
+    </java>
+  </target>
+  
+  <target name="compile.gwt.weatherx" depends="compile.module.weatherx" description="Compile all GWT modules in module weatherX">
+    <property name="gwt.sdk.home.weatherx" value="${gwt.sdk.home}"/>
+    <antcall target="run.gwt.compiler.weatherx">
+      <param name="gwt.module.name" value="com.mySampleApplication.MySampleApplication"/>
+    </antcall>
+  </target>
+</project>

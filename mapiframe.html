@@ -1,0 +1,119 @@
+            <div id="map1"></div>
+
+
+<script>
+    function showVal(){
+        document.getElementById("currentYear").innerHTML=document.getElementById("slider1").value;
+    }
+
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+    var map, heatmap;
+    var year = getUrlVars()["year"];
+    if(year == null){
+        year = 1980;
+    }
+    var var1 = year;
+    var var2 = parseInt(var1) + 1;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map1'), {
+            zoom: 2,
+            center: {lat: 37.775, lng: -122.434},
+            mapTypeId: google.maps.MapTypeId.SATELLITE
+        });
+
+        layer = new google.maps.FusionTablesLayer({
+            map: map,
+            heatmap: { enabled: false },
+            query: {
+                select: "col5, col6, col11",
+                from: "1WsFDuKNYtMrT6mT1ABsHucpkg7qqMZbQLn1URqTx",
+                where: "col0 \x3e\x3d \x27"+var1+"-01-01 00:00:00\x27 and col0 \x3c\x3d \x27"+var1+"-12-31 00:00:00\x27 limit 1000"
+            },
+            options: {
+                styleId: 2,
+                templateId: 2
+            }
+        });
+
+        $('map1').on('pageshow', function(){
+            google.maps.event.trigger(canvas-map, "resize");
+        });
+    }
+
+
+    function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
+    }
+
+    function changeGradient() {
+        var gradient = [
+            'rgba(0, 255, 255, 0)',
+            'rgba(0, 255, 255, 1)',
+            'rgba(0, 191, 255, 1)',
+            'rgba(0, 127, 255, 1)',
+            'rgba(0, 63, 255, 1)',
+            'rgba(0, 0, 255, 1)',
+            'rgba(0, 0, 223, 1)',
+            'rgba(0, 0, 191, 1)',
+            'rgba(0, 0, 159, 1)',
+            'rgba(0, 0, 127, 1)',
+            'rgba(63, 0, 91, 1)',
+            'rgba(127, 0, 63, 1)',
+            'rgba(191, 0, 31, 1)',
+            'rgba(255, 0, 0, 1)'
+        ]
+        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+    }
+
+    function changeRadius() {
+        heatmap.set('radius', heatmap.get('radius') ? null : 20);
+    }
+
+    function changeOpacity() {
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+    }
+
+
+</script>
+
+
+<script>
+    function openTab(evt, panelName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("panel");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+        }
+        document.getElementById(panelName).style.display = "block";
+        evt.currentTarget.className += " w3-red";
+    }
+    window.onload = openTab(event,'map');
+</script>
+
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtoKePRQbJ70eep7XqpTInBtWnk5impb0&libraries=visualization&callback=initMap">
+</script>
+<script type="text/javascript">
+    if (window.location.protocol == "file:") {
+        alert('This script only works when loaded from a web server,' +
+                ' not from a file on your computer.');
+    }
+    function ftOnLoadClientApi() {
+        gapi.client.setApiKey('942287364759-ihhqcf8oq3m9rch4agg6vbulc185k8uk');
+    }
+</script>
+<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=ftOnLoadClientApi">
+</script>

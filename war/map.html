@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Fusion Tables heatmaps</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 10, lng: -140},
+    zoom: 3
+  });
+  function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+
+  var map, heatmap;
+  var year = getUrlVars()["year"];
+  if(year == null){
+    year = 1980;
+  }
+  var var1 = year;
+  var var2 = parseInt(var1) + 1;
+
+   layer = new google.maps.FusionTablesLayer({
+            map: map,
+            heatmap: { enabled: false },
+            query: {
+                select: "col5, col6, col11",
+                from: "1WsFDuKNYtMrT6mT1ABsHucpkg7qqMZbQLn1URqTx",
+                where: "col0 \x3e\x3d \x27"+var1+"-01-01 00:00:00\x27 and col0 \x3c\x3d \x27"+var1+"-12-31 00:00:00\x27 limit 1000"
+            },
+            options: {
+                styleId: 2,
+                templateId: 2
+            }
+        });
+	
+  layer.setMap(map);
+  
+}
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtoKePRQbJ70eep7XqpTInBtWnk5impb0&callback=initMap&signed_in=true" async defer>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="gwt-user">
+    <archive path="D:/System/Programme/gwtsdk/gwt-2.8.0-rc3/gwt-user.jar" />
+  </library>
+  <library name="gwt-user (2)" />
+</eclipse-userlibraries>
+

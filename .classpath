@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gwt-user"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gwt-user (2)"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gwt-ajaxloader-1.1.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gwt-maps-api-3.10.0-alpha-8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gwt-servlet"/>
+	<classpathentry kind="output" path="out/production/weatherX"/>
+</classpath>

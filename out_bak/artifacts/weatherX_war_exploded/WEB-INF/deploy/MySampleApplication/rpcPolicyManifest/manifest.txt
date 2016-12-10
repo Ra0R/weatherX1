@@ -1,0 +1,3 @@
+# Module MySampleApplication
+# RPC service class, partial path of RPC policy file
+com.mySampleApplication.client.MySampleApplicationService, B57978B782DFA13000168724901C30A5.gwt.rpc

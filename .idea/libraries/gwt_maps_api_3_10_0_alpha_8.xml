@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="gwt-maps-api-3.10.0-alpha-8">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/gwt-maps-api-3.10.0-alpha-8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/gwt-maps-api-3.10.0-alpha-8.jar!/" />
+    </SOURCES>
+  </library>
+</component>

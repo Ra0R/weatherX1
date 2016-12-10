@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+
+    <!--                                           -->
+    <!-- Any title is fine                         -->
+    <!--                                           -->
+    <title>weatherX</title>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href="MySampleApplication.css">
+    <!-- css for Tabs -->
+    <link type="text/css" rel="stylesheet" href="w3.css">
+    <!--                                            -->
+    <!-- This script is required bootstrap stuff.   -->
+    <!--                                            -->
+
+    <script type="text/javascript" language="javascript"
+            src="MySampleApplication/MySampleApplication.nocache.js"></script>
+    <style>
+
+        .panel{display:none;}
+    </style>
+</head>
+
+<!--                                           -->
+<!-- The body can have arbitrary html, or      -->
+<!-- you can leave the body empty if you want  -->
+<!-- to create a completely dynamic ui         -->
+<!--                                           -->
+<body>
+
+<h1>weatherX</h1>
+
+
+<div align="center">
+    <ul class="w3-navbar">
+        <li><a href="javascript:void(0)" class="tablink" onclick="openTab(event,'map')">Weather Map</a></li>
+        <li><a href="javascript:void(0)" class="tablink" onclick="openTab(event,'table')">Data Table</a></li>
+
+    </ul>
+    <div id="map" class="panel"></div>
+    <div id="table"  class="panel"></div>
+</div>
+
+
+
+
+<script>
+    function showVal(){
+        document.getElementById("currentYear").innerHTML=document.getElementById("slider1").value;
+    }
+</script>
+
+
+<script>
+    function openTab(evt, panelName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("panel");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+        }
+        document.getElementById(panelName).style.display = "block";
+        evt.currentTarget.className += " w3-red";
+    }
+   // window.onload = openTab(event,'map');
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+serviceClass: com.mySampleApplication.client.MySampleApplicationService
+path: B57978B782DFA13000168724901C30A5.gwt.rpc

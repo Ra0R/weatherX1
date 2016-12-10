@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="weatherX:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/weatherX_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="weatherX" />
+        </element>
+      </element>
+      <element id="library" level="project" name="gwt-user (2)" />
+      <element id="javaee-facet-resources" facet="weatherX/web/Web" />
+    </root>
+  </artifact>
+</component>

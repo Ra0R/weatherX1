@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="gwt-ajaxloader-1.1.0">
+    <archive path="E:/workspace/weatherX1/war/WEB-INF/lib/gwt-ajaxloader-1.1.0.jar" />
+  </library>
+  <library name="gwt-maps-api-3.10.0-alpha-8">
+    <archive path="E:/workspace/weatherX1/war/WEB-INF/lib/gwt-maps-api-3.10.0-alpha-8.jar" />
+  </library>
+  <library name="gwt-servlet">
+    <archive path="E:/workspace/weatherX1/war/WEB-INF/lib/gwt-servlet.jar" />
+  </library>
+  <library name="gwt-user" />
+  <library name="gwt-user (2)">
+    <archive path="C:/GWT/gwt-user.jar" />
+  </library>
+</eclipse-userlibraries>
+
